@@ -22,7 +22,10 @@
         var camera = document.getElementById("customer-photo-camera");
         var ctx = canvas.getContext('2d');
         var cameraSelection = document.getElementById('camera-selection');
-
+        if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+          alert("enumerateDevices() not supported.");
+          return;
+        }
         navigator.mediaDevices.enumerateDevices()
         .then(function(devices) {
           devices.forEach(function(device) {
