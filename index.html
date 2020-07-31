@@ -5,6 +5,34 @@
     <title>title</title>
   </head>
   <body>
-    Test
+  <div id="customer-photo-collection">
+      <video id="customer-photo" width="340" autoplay></video>
+      <input type="hidden" id="customer-photo-camera" required />
+  </div>
+  <span style="background:#10ad65;width:70px;height:50px;padding:10px 5px;margin-top:20px;" id="customer-photo-capture" class="button">
+      <span style="color:#FFF;font-size:50px;width: 55px;" class='webix_icon fa-camera'></span>
+  </span>
+  <select style="height:40px;font-size:20px;padding:0 62px;" id="camera-selection"></select>
+  <img id="customer-photo-image" width="330" height="255" src="" style="border:0;">
+  <canvas id="customer-photo-canvas" width="300" height="300" style="display:none;"></canvas>
+    <script>
+       var video = document.getElementById("customer-photo");
+        var canvas = document.getElementById("customer-photo-canvas");
+        var capture = document.getElementById("customer-photo-capture");
+        var camera = document.getElementById("customer-photo-camera");
+        var ctx = canvas.getContext('2d');
+        var cameraSelection = document.getElementById('camera-selection');
+
+        navigator.mediaDevices.enumerateDevices()
+        .then(function(devices) {
+          devices.forEach(function(device) {
+           alert(device.kind + ": " + device.label +
+                        " id = " + device.deviceId);
+          });
+        })
+        .catch(function(err) {
+          alert(err.name + ": " + err.message);
+        });
+    </script>
   </body>
 </html>
